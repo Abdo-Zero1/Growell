@@ -1,4 +1,4 @@
-namespace Growell.Models
+namespace Models
 {
     public class ErrorViewModel
     {
