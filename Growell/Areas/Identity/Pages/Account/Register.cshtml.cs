@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
@@ -84,7 +85,7 @@ namespace Growell.Areas.Identity.Pages.Account
 
             [Required(ErrorMessage = "Last name is required")]
             [StringLength(100, ErrorMessage = "First name must be between 5 and 100 characters.", MinimumLength = 4)]
-            [Display(Name = "First Name")]
+            [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
             /// <summary>
@@ -138,14 +139,17 @@ namespace Growell.Areas.Identity.Pages.Account
                     LastName = Input.LastName,
 
                 };
-
+                //var user = CreateUser();
                 //await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 //await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                //user.FirstName = Input.FirstName;
+                //user.LastName = Input.LastName;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    await _userManager.AddToRoleAsync(user, "User");
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -179,16 +183,16 @@ namespace Growell.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private ApplicationUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<ApplicationUser>();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
+                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }

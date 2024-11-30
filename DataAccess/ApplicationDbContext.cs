@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Models;
 
@@ -41,6 +42,19 @@ namespace DataAccess
                 .WithMany()  
                 .HasForeignKey(tr => tr.TestID)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
+            var Admin = new IdentityRole("Admin");
+            Admin.NormalizedName = "Admin";
+
+            var Doctor = new IdentityRole("Doctor");
+            Doctor.NormalizedName = "Doctor";
+
+            var User = new IdentityRole("User");
+            User.NormalizedName = "User";
+
+            modelBuilder.Entity<IdentityRole>().HasData(Admin,Doctor,User);
+
         }
 
 

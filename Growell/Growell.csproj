@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Areas\Identity\Pages\Users.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
     <ProjectReference Include="..\utility\utility.csproj" />
@@ -23,6 +27,9 @@
     <Folder Include="Areas\Doctors\Views\" />
     <Folder Include="Areas\Users\Data\" />
     <Folder Include="Areas\Users\Models\" />
+    <Folder Include="wwwroot\Images\Admin\" />
+    <Folder Include="wwwroot\Images\Doctor\" />
+    <Folder Include="wwwroot\Images\User\" />
   </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
@@ -34,6 +41,15 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+	</ItemGroup>
+	<ItemGroup>
+	  <UpToDateCheckInput Remove="Areas\Identity\Pages\Users.cshtml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Users.cshtml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Include="Areas\Identity\Pages\Users.cshtml" />
 	</ItemGroup>
 
 	

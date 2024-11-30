@@ -27,7 +27,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav">
+                    @* <ul class="navbar-nav">
 
                         @if (!User.Identity.IsAuthenticated)
                         {
@@ -50,7 +50,9 @@
                             </li>
                         }
 
-                    </ul>
+                    </ul> *@
+
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>

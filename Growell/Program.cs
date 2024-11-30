@@ -4,6 +4,7 @@ using DataAccess.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Growell
 {
@@ -24,6 +25,7 @@ namespace Growell
             // Identity Configuration
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
                  .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddTransient<IEmailSender, EmailSender>();
 
             // Add scoped repositories
             builder.Services.AddScoped<IAdminRepository, AdminRepository>();
